@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mea Gwen Gulle | Software QA Engineer Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Global Reset & Colors */
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --card-bg-alpha: rgba(30, 41, 59, 0.7);
+      --neon-cyan: #06b6d4;
+      --neon-purple: #a855f7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-glow: rgba(168, 85, 247, 0.3);
+      --cyan-glow: rgba(6, 182, 212, 0.25);
+      --navbar-bg: rgba(15, 23, 42, 0.85);
+      --navbar-solid: rgba(15, 23, 42, 0.97);
+      --title-gradient-start: #ffffff;
+      --cta-banner-bg: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
+      --transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    [data-theme="light"] {
+      --bg-dark: #eef1f8;
+      --card-bg: #ffffff;
+      --card-bg-alpha: rgba(255, 255, 255, 0.85);
+      --text-main: #0f172a;
+      --text-muted: #55637a;
+      --border-glow: rgba(168, 85, 247, 0.25);
+      --cyan-glow: rgba(6, 182, 212, 0.18);
+      --navbar-bg: rgba(255, 255, 255, 0.85);
+      --navbar-solid: rgba(255, 255, 255, 0.97);
+      --title-gradient-start: #0f172a;
+      --cta-banner-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(238, 241, 248, 0.95));
+    }
+
+    body, .navbar, .hero-card, .skill-card, .project-card, .timeline-card,
+    .cta-banner, .sample-card, .intro-section {
+      transition: var(--transition-theme);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      padding-top: 90px;
+      overflow-x: hidden;
+    }
+
+    section {
+      scroll-margin-top: 110px;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    /* Floating Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--navbar-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      padding: 1.2rem 8%;
+      z-index: 1000;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .nav-logo span {
+      color: var(--neon-cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 8px var(--neon-cyan);
+    }
+
+    .btn-glow {
+      background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+      color: #ffffff;
+      padding: 0.6rem 1.4rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .btn-glow:hover {
+      box-shadow: 0 0 25px rgba(6, 182, 212, 0.8);
+      transform: translateY(-2px);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-self: end;
+    }
+
+    /* Hamburger toggle (hidden on desktop) */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.4rem;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    /* Hero Section Card */
+    .hero-card {
+      background: var(--card-bg-alpha);
+      border: 1px solid var(--border-glow);
+      border-radius: 20px;
+      padding: clamp(1.5rem, 4vw, 3.5rem);
+      display: grid;
+      align-items: end;
+      grid-template-columns: 1fr minmax(180px, 25vw);
+      gap: clamp(1rem, 3vw, 2.5rem);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(168, 85, 247, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 620px;
+      position: relative;
+    }
+
+    .hero-subtitle {
+      color: var(--neon-cyan);
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(to right, var(--title-gradient-start), var(--neon-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      word-break: break-word;
+    }
+
+    .hero-contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-contact-info span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-contact-info i {
+      color: var(--neon-purple);
+    }
+
+    .hero-contact-info a:hover {
+      color: var(--neon-cyan);
+    }
+
+    .hero-contact-info a:hover i {
+      text-shadow: 0 0 8px var(--neon-cyan);
+    }
+
+    .hero-description {
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .btn-secondary-glow {
+      background: transparent;
+      color: var(--text-main);
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid var(--neon-cyan);
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .btn-secondary-glow:hover {
+      background: rgba(6, 182, 212, 0.1);
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+    }
+
+    .profile-glow-frame {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      isolation: isolate;
+    }
+
+    .profile-img-bottom {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(180px, 20vw, 280px);
+      height: clamp(180px, 20vw, 280px);
+      object-fit: cover;
+      object-position: center top;
+      z-index: 1;
+      display: block;
+      pointer-events: none;
+      border-radius: 50%;
+      border: 3px solid rgba(6, 182, 212, 0.55);
+      box-shadow:
+        0 0 30px rgba(168, 85, 247, 0.35),
+        0 0 55px rgba(6, 182, 212, 0.18),
+        0 20px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Floating info chips over the photo */
+    .profile-chip {
+      position: absolute;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 30px;
+      padding: 8px 14px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #f8fafc;
+      white-space: nowrap;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .chip-experience {
+      left: 50%;
+      bottom: 1.6rem;
+      transform: translateX(-115%);
+    }
+
+    .chip-experience i {
+      color: var(--neon-purple);
+    }
+
+    .chip-status {
+      left: 50%;
+      top: -0.6rem;
+      transform: translateX(15%);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22d3ee;
+      box-shadow: 0 0 8px #22d3ee;
+      animation: dotPulse 1.8s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    /* Section Headers */
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title i {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 10px var(--neon-cyan);
+    }
+
+    /* Neon Skill Badges Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--card-bg-alpha);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      min-width: 0;
+    }
+
+    .skill-card:hover {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 20px var(--cyan-glow);
+      transform: translateY(-4px);
+    }
+
+    .skill-card h4 {
+      color: var(--neon-cyan);
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .skill-blurb {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .neon-badge {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--neon-purple);
+      color: #e2e8f0;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      box-shadow: 0 0 8px rgba(168, 85, 247, 0.2);
+      line-height: 1.3;
+    }
+
+    /* Projects Section */
+    .projects-flex {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--card-bg-alpha);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 2.2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+      border-color: var(--neon-purple);
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+    }
+
+    .project-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .project-header h3 {
+      font-size: 1.35rem;
+      color: var(--text-main);
+    }
+
+    .company-tag {
+      background: rgba(6, 182, 212, 0.15);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .project-body {
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .project-body ul {
+      margin: 12px 0 16px 20px;
+    }
+
+    .tag-container {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 1.2rem;
+    }
+
+    .tag-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+
+    /* Experience & Sidebar Grid */
+    .two-column-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+    }
+
+    .timeline-card {
+      background: var(--card-bg-alpha);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .timeline-item {
+      border-left: 2px solid var(--neon-purple);
+      padding-left: 20px;
+      margin-bottom: 1.8rem;
+      position: relative;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -7px;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--neon-cyan);
+      box-shadow: 0 0 10px var(--neon-cyan);
+    }
+
+    .timeline-role {
+      font-size: 1.1rem;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .timeline-date {
+      color: var(--neon-cyan);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin: 4px 0 8px 0;
+    }
+
+    /* Footer Banner */
+    .cta-banner {
+      background: var(--cta-banner-bg);
+      border: 1px solid var(--neon-cyan);
+      box-shadow: 0 0 30px var(--cyan-glow);
+      border-radius: 20px;
+      padding: 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .logo-img {
+      height: 50px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Animated Intro / Landing Section (full-bleed, outside .container) */
+    .intro-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      margin-top: -90px;
+      padding-top: 90px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .intro-name {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .intro-name-track {
+      display: flex;
+      width: max-content;
+      animation: nameScrollLeft 16s linear infinite;
+    }
+
+    .intro-name-track span {
+      font-size: clamp(2.4rem, 12vw, 9.5rem);
+      font-weight: 800;
+      white-space: nowrap;
+      padding-right: 3.5rem;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.16), rgba(6, 182, 212, 0.16));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(6, 182, 212, 0.25);
+    }
+
+    [data-theme="light"] .intro-name-track span {
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.14), rgba(6, 182, 212, 0.22));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-stroke: 1px rgba(6, 182, 212, 0.35);
+    }
+
+    @keyframes nameScrollLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .intro-photo-wrap {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      max-height: 92vh;
+      display: flex;
+      align-items: flex-end;
+      pointer-events: none;
+    }
+
+    .intro-photo {
+      display: block;
+      width: auto;
+      max-width: min(85vw, 480px);
+      max-height: 88vh;
+      object-fit: contain;
+    }
+
+    .intro-scroll-cue {
+      position: absolute;
+      bottom: 1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: var(--text-muted);
+      font-size: 1.3rem;
+      text-decoration: none;
+      animation: bounceCue 2s ease-in-out infinite;
+    }
+
+    .intro-scroll-cue:hover {
+      color: var(--neon-cyan);
+    }
+
+    @keyframes bounceCue {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.55; }
+      50% { transform: translateX(-50%) translateY(8px); opacity: 1; }
+    }
+
+    /* Sample Work Section */
+    .samples-intro {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin: -1.2rem 0 1.8rem 0;
+      white-space: nowrap;
+    }
+
+    .samples-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .sample-card {
+      background: var(--card-bg-alpha);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .sample-card:hover {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 25px var(--cyan-glow);
+    }
+
+    .sample-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 1.4rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+    }
+
+    .sample-id {
+      font-family: 'Courier New', monospace;
+      color: var(--neon-cyan);
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .sample-card-header h3 {
+      font-size: 1.1rem;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .sample-chip {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .chip-high {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid #ef4444;
+      color: #f87171;
+    }
+
+    .chip-open {
+      background: rgba(168, 85, 247, 0.15);
+      border: 1px solid var(--neon-purple);
+      color: #d8b4fe;
+    }
+
+    .chip-pass {
+      background: rgba(6, 182, 212, 0.15);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+    }
+
+    .sample-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .sample-field label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--neon-cyan);
+      margin-bottom: 4px;
+    }
+
+    .sample-field p,
+    .sample-field ol {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      margin-left: 0;
+    }
+
+    .sample-field ol {
+      margin-left: 18px;
+    }
+
+    .sample-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 6px;
+    }
+
+    .sample-meta-row .sample-field {
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .sample-card-wide {
+      grid-column: 1 / -1;
+    }
+
+    .chip-auto {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.18), rgba(6, 182, 212, 0.18));
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+    }
+
+    .sample-code {
+      background: #0b1224;
+      border: none;
+      border-radius: 0 0 10px 10px;
+      padding: 1.1rem 1.3rem 1.1rem 0;
+      margin: 0;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: #cbd5e1;
+      counter-reset: line;
+    }
+
+    .sample-code .code-line {
+      display: block;
+      counter-increment: line;
+      padding-left: 3.6em;
+      position: relative;
+      white-space: pre;
+    }
+
+    .sample-code .code-line::before {
+      content: counter(line);
+      position: absolute;
+      left: 0;
+      width: 2.6em;
+      text-align: right;
+      padding-right: 0.9em;
+      color: #475569;
+      user-select: none;
+    }
+
+    .sample-code .kw { color: #a855f7; }
+    .sample-code .fn { color: #06b6d4; }
+    .sample-code .str { color: #86efac; }
+    .sample-code .cm { color: #64748b; font-style: italic; }
+
+    .ide-window {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .ide-titlebar {
+      background: #161f38;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .ide-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #22c55e; }
+
+    .ide-filename {
+      margin-left: 10px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ide-filename i {
+      color: var(--neon-cyan);
+    }
+
+    .automation-panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .automation-panel-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .automation-panel-label i {
+      color: var(--neon-purple);
+    }
+
+    /* Selenium IDE mock window */
+    .selenium-window {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .selenium-titlebar {
+      background: #14311f;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.8rem;
+      color: #86efac;
+      font-family: 'Courier New', monospace;
+    }
+
+    .selenium-titlebar i {
+      color: #4ade80;
+    }
+
+    .side-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Courier New', monospace;
+      font-size: 0.76rem;
+      background: #0b1224;
+    }
+
+    .side-table th {
+      text-align: left;
+      padding: 0.55rem 0.7rem;
+      background: rgba(74, 222, 128, 0.08);
+      color: #4ade80;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .side-table td {
+      padding: 0.5rem 0.7rem;
+      color: #cbd5e1;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      vertical-align: top;
+    }
+
+    .side-table tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .side-table .side-comment td {
+      color: #64748b;
+      font-style: italic;
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    .sample-note {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-style: italic;
+      margin-top: 0.9rem;
+    }
+
+    /* ===================== RESPONSIVE BREAKPOINTS ===================== */
+
+    /* Tablets */
+    @media (max-width: 1024px) {
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Small tablets / large phones — nav collapses, layout stacks */
+    @media (max-width: 900px) {
+      body {
+        padding-top: 76px;
+      }
+
+      .navbar {
+        padding: 1rem 5%;
+      }
+
+      .nav-toggle {
+        display: block;
+        order: 3;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        background: var(--navbar-solid);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .nav-links.is-open {
+        max-height: 320px;
+      }
+
+      .nav-links li {
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 1rem 0;
+      }
+
+      .nav-actions .btn-glow {
+        display: none;
+      }
+
+      .hero-card {
+        grid-template-columns: 1fr;
+        padding: 2.2rem 1.6rem;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .intro-section {
+        min-height: 100vh;
+        margin-top: -76px;
+        padding-top: 76px;
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .hero-contact-info,
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .profile-glow-frame {
+        order: -1;
+        height: auto;
+        justify-content: center;
+        padding-top: 1rem;
+      }
+
+      .profile-img-bottom {
+        position: static;
+        margin: 0 auto;
+        transform: none;
+        left: auto;
+      }
+
+      .chip-experience {
+        bottom: -0.6rem;
+        transform: translateX(-90%);
+      }
+
+      .chip-status {
+        top: 0.5rem;
+        transform: translateX(90%);
+      }
+
+      .skills-grid,
+      .two-column-grid,
+      .samples-grid,
+      .automation-panels {
+        grid-template-columns: 1fr;
+      }
+
+      .project-header {
+        justify-content: flex-start;
+      }
+
+      .cta-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 2.2rem 1.6rem;
+      }
+    }
+
+    /* Phones */
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.5rem 1rem;
+        gap: 2.5rem;
+      }
+
+      .nav-logo .logo-img {
+        height: 38px;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .profile-chip {
+        display: none;
+      }
+
+      .hero-contact-info {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-actions .btn-glow,
+      .hero-actions .btn-secondary-glow {
+        text-align: center;
+        width: 100%;
+      }
+
+      .project-card,
+      .timeline-card,
+      .skill-card {
+        padding: 1.4rem;
+      }
+
+      .project-header h3 {
+        font-size: 1.15rem;
+      }
+
+      .samples-intro {
+        white-space: normal;
+      }
+
+      .cta-banner h2 {
+        font-size: 1.4rem;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .intro-name-track,
+      .intro-scroll-cue,
+      .status-dot {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">
+     <img src="logo.png" alt="" width="500" height="500" class="logo-img">
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#samples">Samples</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark or light mode">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+      </button>
+      <a href="#contact" class="btn-glow">Contact Me</a>
+    </div>
+  </nav>
+
+  <section id="intro" class="intro-section">
+    <div class="intro-name" aria-hidden="true">
+      <div class="intro-name-track">
+        <span>MEA GWEN GULLE</span>
+        <span>MEA GWEN GULLE</span>
+        <span>MEA GWEN GULLE</span>
+        <span>MEA GWEN GULLE</span>
+      </div>
+    </div>
+    <div class="intro-photo-wrap">
+      <img src="image 1.png" alt="Mea Gwen Gulle" class="intro-photo">
+    </div>
+    <a href="#home" class="intro-scroll-cue" aria-label="Scroll to portfolio">
+      <i class="fa-solid fa-chevron-down"></i>
+    </a>
+  </section>
+
+  <div class="container">
+
+    <section id="home" class="hero-card">
+      <div class="hero-content">
+        <div class="hero-subtitle">Software QA Engineer</div>
+        <h1 class="hero-title">Mea Gwen Gulle</h1>
+        <div class="hero-contact-info">
+          <span><i class="fa-solid fa-location-dot"></i> Koronadal City, Philippines</span>
+          <span><i class="fa-solid fa-phone"></i> +63 994 735 1187</span>
+          <span><i class="fa-solid fa-envelope"></i> meagwengulle99@gmail.com</span>
+        </div>
+        <p class="hero-description">
+          Detail-oriented Quality Assurance professional with 3+ years in software testing and 1+ year in Level 1 technical support. Specializing in manual testing, API validation, defect tracking, and frontline user assistance.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn-glow"><i class="fa-solid fa-rocket"></i> View Projects</a>
+          <a href="Resume.pdf" download="Resume.pdf" target="_blank" class="btn-secondary-glow"><i class="fa-solid fa-file-arrow-down"></i> Download Resume</a>
+        </div>
+      </div>
+      <div class="profile-glow-frame">
+        <img src="image 2.png" alt="Mea Gwen Gulle" class="profile-img-bottom">
+        <span class="profile-chip chip-status"><span class="status-dot"></span>Open to Work</span>
+        <span class="profile-chip chip-experience"><i class="fa-solid fa-shield-halved"></i>3+ Yrs in QA</span>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title"><i class="fa-solid fa-code"></i> Technical Stack & Tools</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h4>Manual & Functional Testing</h4>
+          <p class="skill-blurb">Day-to-day testing discipline — writing and executing test cases, then validating releases before they ship to production.</p>
+          <div class="badge-list">
+            <span class="neon-badge">Manual Testing</span>
+            <span class="neon-badge">Test Case Execution</span>
+            <span class="neon-badge">Regression Testing</span>
+            <span class="neon-badge">Smoke Testing</span>
+            <span class="neon-badge">Exploratory Testing</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h4>QA Tools & Documentation</h4>
+          <p class="skill-blurb">Tracking defects end-to-end through their lifecycle and validating backend behavior through API calls.</p>
+          <div class="badge-list">
+            <span class="neon-badge">Jira (Bug Tracking)</span>
+            <span class="neon-badge">API Testing (Insomnia)</span>
+            <span class="neon-badge">API Testing (Swagger)</span>
+            <span class="neon-badge">Confluence</span>
+            <span class="neon-badge">Google Workspace</span>
+            <span class="neon-badge">MS Office</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h4>Automation & CI/CD <span style="color: var(--text-muted); font-weight: 500; font-size: 0.75rem;">(Working Knowledge)</span></h4>
+          <p class="skill-blurb">Building hands-on familiarity with automated testing and pipeline integration to complement manual QA coverage.</p>
+          <div class="badge-list">
+            <span class="neon-badge">Selenium WebDriver</span>
+            <span class="neon-badge">Selenium IDE</span>
+            <span class="neon-badge">Playwright</span>
+            <span class="neon-badge">Basic Java</span>
+            <span class="neon-badge">Jenkins</span>
+            <span class="neon-badge">GitHub</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h4>L1 Support & Ops</h4>
+          <p class="skill-blurb">Frontline troubleshooting experience that sharpens how I reproduce, document, and prioritize defect reports.</p>
+          <div class="badge-list">
+            <span class="neon-badge">Level 1 Support</span>
+            <span class="neon-badge">Helpdesk</span>
+            <span class="neon-badge">Troubleshooting</span>
+            <span class="neon-badge">Ticketing Systems</span>
+            <span class="neon-badge">Incident Documentation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title"><i class="fa-solid fa-diagram-project"></i> Featured Handled Projects</h2>
+      <div class="projects-flex">
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3>🎟️ Marlboro Web App — Raffles & Winning Prizes</h3>
+            <span class="company-tag">Coreproc, Inc.</span>
+          </div>
+          <div class="project-body">
+            <p>Executed comprehensive manual, API, and regression testing for high-traffic campaign web applications handling raffle entry validation, winning logic, and prize distribution.</p>
+            <ul>
+              <li>Tested backend endpoint responses via <strong>Swagger & Insomnia</strong> to ensure transaction precision.</li>
+              <li>Tracked and verified bug lifecycles in <strong>Jira</strong> through iterative pre-release phases.</li>
+            </ul>
+          </div>
+          <div class="tag-container">
+            <span class="tag-item">API Testing</span>
+            <span class="tag-item">Jira</span>
+            <span class="tag-item">Web App QA</span>
+            <span class="tag-item">Campaign Raffles</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3>💰 Accounting System</h3>
+            <span class="company-tag">Eulap</span>
+          </div>
+          <div class="project-body">
+            <p>Provided manual testing and Level 1 technical support for an enterprise accounting platform, focused on keeping financial data accurate before every release.</p>
+            <ul>
+              <li>Verified <strong>financial calculations, transaction posting, and ledger accuracy</strong> across test scenarios.</li>
+              <li>Ran regression, smoke, and exploratory testing to confirm fixes didn't affect existing financial modules.</li>
+              <li>Logged and tracked defects in <strong>Jira</strong>, verifying resolutions through re-testing before client release.</li>
+            </ul>
+          </div>
+          <div class="tag-container">
+            <span class="tag-item">L1 Support</span>
+            <span class="tag-item">Manual Testing</span>
+            <span class="tag-item">Regression Testing</span>
+            <span class="tag-item">Accounting System</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3>📦 Inventory System</h3>
+            <span class="company-tag">Eulap</span>
+          </div>
+          <div class="project-body">
+            <p>Tested an inventory management system covering stock movement and audit workflows, supporting users through Level 1 troubleshooting during rollout.</p>
+            <ul>
+              <li>Validated <strong>stock balances, order tracking, and audit trail workflows</strong> for accuracy.</li>
+              <li>Assisted users with system issues and documented incidents through a ticketing system.</li>
+              <li>Performed smoke and exploratory testing to catch regressions ahead of deployment.</li>
+            </ul>
+          </div>
+          <div class="tag-container">
+            <span class="tag-item">L1 Support</span>
+            <span class="tag-item">Manual Testing</span>
+            <span class="tag-item">Smoke Testing</span>
+            <span class="tag-item">Inventory QA</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <h3>🎓 School LMS</h3>
+            <span class="company-tag">Eulap</span>
+          </div>
+          <div class="project-body">
+            <p>Delivered QA coverage and frontline support for a school Learning Management System used by students and faculty.</p>
+            <ul>
+              <li>Validated <strong>student portals, grading modules, and course management features</strong>.</li>
+              <li>Provided Level 1 support, troubleshooting basic technical problems reported by users.</li>
+              <li>Ensured software quality and stability prior to deployment through re-testing verified fixes.</li>
+            </ul>
+          </div>
+          <div class="tag-container">
+            <span class="tag-item">L1 Support</span>
+            <span class="tag-item">Manual Testing</span>
+            <span class="tag-item">Exploratory Testing</span>
+            <span class="tag-item">School LMS</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="samples">
+      <h2 class="section-title"><i class="fa-solid fa-bug"></i> Sample Work</h2>
+      <p class="samples-intro">Recreated QA artifacts from the Marlboro raffle project — bug reports, test cases, and automation scripts.</p>
+      <div class="samples-grid">
+
+        <div class="sample-card">
+          <div class="sample-card-header">
+            <div>
+              <span class="sample-id">BUG-1024</span>
+              <h3>Daily UPC code entry limit not enforced</h3>
+            </div>
+            <span class="sample-chip chip-high">High</span>
+          </div>
+          <div class="sample-fields">
+            <div class="sample-meta-row">
+              <div class="sample-field">
+                <label>Environment</label>
+                <p>Staging · Chrome 126, Windows 11</p>
+              </div>
+              <div class="sample-field">
+                <label>Status</label>
+                <span class="sample-chip chip-open">Open</span>
+              </div>
+            </div>
+            <div class="sample-field">
+              <label>Steps to Reproduce</label>
+              <ol>
+                <li>Log in to the raffle web app with a valid account.</li>
+                <li>Enter a valid UPC code from a Marlboro pack via the entry form.</li>
+                <li>Repeat step 2 until reaching the account's daily entry limit (5 codes/day).</li>
+                <li>Submit one additional valid, unused UPC code beyond the daily limit.</li>
+              </ol>
+            </div>
+            <div class="sample-field">
+              <label>Expected Result</label>
+              <p>Entry is rejected with a message such as "Daily entry limit reached — try again tomorrow," and the code is not counted toward the raffle.</p>
+            </div>
+            <div class="sample-field">
+              <label>Actual Result</label>
+              <p>The additional UPC code is accepted and counted as a valid entry, allowing the account to exceed the stated daily limit.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sample-card">
+          <div class="sample-card-header">
+            <div>
+              <span class="sample-id">TC-215</span>
+              <h3>Verify a redeemed winning UPC code cannot be claimed twice</h3>
+            </div>
+            <span class="sample-chip chip-pass">Pass</span>
+          </div>
+          <div class="sample-fields">
+            <div class="sample-field">
+              <label>Module</label>
+              <p>Prize Distribution</p>
+            </div>
+            <div class="sample-field">
+              <label>Precondition</label>
+              <p>UPC code has already won and is marked "Redeemed" in the system.</p>
+            </div>
+            <div class="sample-field">
+              <label>Test Steps</label>
+              <ol>
+                <li>Navigate to the prize redemption page.</li>
+                <li>Enter the already-redeemed UPC code.</li>
+                <li>Submit for redemption.</li>
+              </ol>
+            </div>
+            <div class="sample-field">
+              <label>Expected Result</label>
+              <p>System displays "This prize has already been claimed" and does not process a second payout.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sample-card sample-card-wide">
+          <div class="sample-card-header">
+            <div>
+              <span class="sample-id">SCRIPT-003</span>
+              <h3>Automated regression check — daily UPC entry limit</h3>
+            </div>
+            <span class="sample-chip chip-auto">Playwright · Selenium IDE</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.2rem;">Two ways I'd cover the BUG-1024 scenario going forward: a scripted Playwright test for CI, and a recorded Selenium IDE case for quick manual re-checks.</p>
+
+          <div class="automation-panels">
+            <div>
+              <div class="automation-panel-label"><i class="fa-solid fa-code"></i>Playwright (TypeScript)</div>
+              <div class="ide-window">
+                <div class="ide-titlebar">
+                  <span class="ide-dot dot-red"></span>
+                  <span class="ide-dot dot-yellow"></span>
+                  <span class="ide-dot dot-green"></span>
+                  <span class="ide-filename"><i class="fa-solid fa-file-code"></i>upcDailyLimit.spec.ts</span>
+                </div>
+                <pre class="sample-code"><code><span class="code-line"><span class="kw">import</span> { test, expect } <span class="kw">from</span> <span class="str">'@playwright/test'</span>;</span><span class="code-line"> </span><span class="code-line"><span class="fn">test</span>(<span class="str">'blocks entry once daily UPC limit is reached'</span>, <span class="kw">async</span> ({ page }) => {</span><span class="code-line">    <span class="kw">await</span> page.goto(<span class="str">'/raffle'</span>);</span><span class="code-line"> </span><span class="code-line">    <span class="kw">for</span> (<span class="kw">let</span> i = 1; i <= 5; i++) {</span><span class="code-line">        <span class="kw">await</span> page.fill(<span class="str">'#upc-input'</span>, <span class="str">`UPC-000${i}`</span>);</span><span class="code-line">        <span class="kw">await</span> page.click(<span class="str">'#submit-entry'</span>);</span><span class="code-line">        <span class="kw">await</span> expect(page.locator(<span class="str">'.entry-success'</span>)).toBeVisible();</span><span class="code-line">    }</span><span class="code-line"> </span><span class="code-line">    <span class="cm">// 6th code should exceed the daily limit</span></span><span class="code-line">    <span class="kw">await</span> page.fill(<span class="str">'#upc-input'</span>, <span class="str">'UPC-0006'</span>);</span><span class="code-line">    <span class="kw">await</span> page.click(<span class="str">'#submit-entry'</span>);</span><span class="code-line"> </span><span class="code-line">    <span class="kw">await</span> expect(page.locator(<span class="str">'.limit-error'</span>)).toHaveText(</span><span class="code-line">        <span class="str">'Daily entry limit reached'</span></span><span class="code-line">    );</span><span class="code-line">});</span></code></pre>
+              </div>
+            </div>
+
+            <div>
+              <div class="automation-panel-label"><i class="fa-solid fa-video"></i>Selenium IDE (Recorded)</div>
+              <div class="selenium-window">
+                <div class="selenium-titlebar">
+                  <i class="fa-solid fa-circle-play"></i>Verify Daily UPC Entry Limit.side
+                </div>
+                <table class="side-table" style="display: block; overflow-x: auto; white-space: nowrap;">
+                  <thead style="display: table-header-group;">
+                    <tr><th>Command</th><th>Target</th><th>Value</th></tr>
+                  </thead>
+                  <tbody style="display: table-row-group;">
+                    <tr><td>open</td><td>/raffle</td><td></td></tr>
+                    <tr><td>type</td><td>id=upc-input</td><td>UPC-0001</td></tr>
+                    <tr><td>click</td><td>id=submit-entry</td><td></td></tr>
+                    <tr><td>assertText</td><td>css=.entry-success</td><td>Entry accepted</td></tr>
+                    <tr class="side-comment"><td colspan="3">// repeat type → click → assert for UPC-0002 through UPC-0005</td></tr>
+                    <tr><td>type</td><td>id=upc-input</td><td>UPC-0006</td></tr>
+                    <tr><td>click</td><td>id=submit-entry</td><td></td></tr>
+                    <tr><td>assertText</td><td>css=.limit-error</td><td>Daily entry limit reached</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <p class="sample-note">Note: automation is a growing part of my skill set alongside manual testing — these reflect the level of scripting and recorded-test work I'm currently comfortable with, not a full automation framework.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="two-column-grid">
+
+      <section id="experience">
+        <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Work Experience</h2>
+        <div class="timeline-card">
+          <div class="timeline-item">
+            <div class="timeline-role">Software QA Engineer</div>
+            <div class="timeline-date">Coreproc, Inc. | Jan 2025 – Present</div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; line-height: 1.6;">
+              Executing manual test cases across web and application systems, including regression, smoke, and exploratory testing during pre-release phases. Logging and tracking defects in Jira, verifying fixes through re-testing, and conducting API testing to validate backend functionality and endpoint behavior. Building working familiarity with automation tooling (Selenium WebDriver, Playwright, Java) to complement manual QA coverage.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-role">Software QA Engineer | L1 Support</div>
+            <div class="timeline-date">Eulap | Jul 2023 – Jan 2025</div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; line-height: 1.6;">
+              Provided Level 1 technical support, assisting users with system issues, troubleshooting basic technical problems, and documenting incidents through a ticketing system. Conducted manual testing to validate reported issues before escalating to higher support levels, and performed regression, smoke, and exploratory testing to confirm fixes and new changes did not affect existing features. Logged and tracked defects in Jira and verified resolutions through re-testing before releasing updates to clients.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-role">IT Intern</div>
+            <div class="timeline-date">CrimShield, Inc. (Mesa, AZ, USA – Remote)</div>
+          </div>
+        </div>
+      </section>
+
+      <div>
+        <section id="education" style="margin-bottom: 2rem;">
+          <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+          <div class="timeline-card">
+            <h4 style="color: var(--text-main);">BS in Information Technology</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">Notre Dame of Marbel University</p>
+            <p style="color: var(--neon-cyan); font-size: 0.82rem; font-weight: 600; margin-top: 6px;">Jun 2019 – Jun 2023</p>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="section-title"><i class="fa-solid fa-trophy"></i> Recognition & Certifications</h2>
+          <div class="timeline-card">
+            <h4 style="color: var(--text-main);">🏆 Most Efficient QA Engineer</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">Awarded at Eulap for high bug detection efficiency and fast support resolution.</p>
+          </div>
+          <div class="timeline-card" style="margin-top: 1.2rem;">
+            <h4 style="color: var(--text-main);">📜 Civil Service Eligibility — Professional Level</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">Passed the Civil Service Examination, Professional Level, August 2024.</p>
+          </div>
+        </section>
+      </div>
+
+    </div>
+
+    <section id="contact" class="cta-banner">
+      <div>
+        <h2 style="font-size: 1.8rem; color: var(--text-main); margin-bottom: 0.4rem;">Let's Build Quality Software Together</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Looking for a QA Engineer or Tech Support Specialist? Reach out today.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+        <a href="mailto:meagwengulle99@gmail.com" class="btn-glow"><i class="fa-solid fa-paper-plane"></i> Send Email</a>
+        <a href="https://www.linkedin.com/in/meagwengulle/" target="_blank" rel="noopener" class="btn-secondary-glow"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/mhio-me" target="_blank" rel="noopener" class="btn-secondary-glow"><i class="fa-brands fa-github"></i> GitHub</a>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        root.setAttribute('data-theme', 'light');
+        themeIcon.className = 'fa-solid fa-sun';
+      } else {
+        root.removeAttribute('data-theme');
+        themeIcon.className = 'fa-solid fa-moon';
+      }
+    }
+
+    let savedTheme = null;
+    try { savedTheme = localStorage.getItem('portfolio-theme'); } catch (e) {}
+    applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+
+    themeToggle.addEventListener('click', () => {
+      const isLight = root.getAttribute('data-theme') === 'light';
+      const next = isLight ? 'dark' : 'light';
+      applyTheme(next);
+      try { localStorage.setItem('portfolio-theme', next); } catch (e) {}
+    });
+
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', false);
+        navToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+  </script>
+
+</body>
+</html>
